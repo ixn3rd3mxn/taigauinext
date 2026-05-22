@@ -1,0 +1,96 @@
+<header tuiNavigationHeader>
+    <span tuiNavigationLogo>
+        <span tuiFade>ศูนย์รับแจ้งเหตุและสั่งการการแพทย์ฉุกเฉิน อบจ.ปัตตานี</span>
+        <div tuiBadge>pre-alpha-0.0.0</div>
+    </span>
+    <span tuiNavigationSegments>
+    </span>
+    <hr />
+</header>
+
+<div [style.display]="'flex'">
+    <aside [tuiNavigationAside]="expanded()">
+        <header>
+            <button iconStart="@tui.home" type="button" [tuiAsideItem]="hint">
+                <ng-container [ngTemplateOutlet]="hint" />
+                <ng-template #hint>
+                    <span tuiFade>หน้าหลัก</span>
+                </ng-template>
+            </button>
+        </header>
+
+        <tui-aside-group>
+            <button
+                iconStart="@tui.layout-dashboard"
+                tuiAsideItem
+                tuiChevron
+                type="button"
+            >
+                รายงานรับแจ้งเหตุ
+                <ng-template>
+                    <button tuiAsideItem type="button" [routerLink]="'/ir-db'">
+                        แดชบอร์ด
+                    </button>
+                    <button tuiAsideItem type="button" [routerLink]="'/ir-r'">
+                        สรุปผล
+                    </button>
+                    <button tuiAsideItem type="button" [routerLink]="'/ir-md'">
+                        จัดการข้อมูล
+                    </button>
+                </ng-template>
+            </button>
+        </tui-aside-group>
+
+        <tui-aside-group>
+            <button
+                iconStart="@tui.map"
+                tuiAsideItem
+                tuiChevron
+                type="button"
+            >
+                รวมหน่วยกู้ชีพ
+                <ng-template>
+                    <button tuiAsideItem type="button" [routerLink]="'/rd-m'">
+                        แผนที่
+                    </button>
+                    <button tuiAsideItem type="button" [routerLink]="'/rd-r'">
+                        สรุปผล
+                    </button>
+                    <button tuiAsideItem type="button" [routerLink]="'/rd-md'">
+                        จัดการข้อมูล
+                    </button>
+                </ng-template>
+            </button>
+        </tui-aside-group>
+
+        <footer>
+            <button iconStart="@tui.settings" tuiAsideItem type="button">
+                การตั้งค่า
+            </button>
+            <button
+                tuiAsideItem
+                type="button"
+                [iconStart]="expanded() ? '@tui.arrow-left-to-line' : '@tui.arrow-right-to-line'"
+                (click)="handleToggle()"
+            >
+                {{ expanded() ? 'ซ่อนแถบ' : 'แสดงแถบ' }}
+            </button>
+        </footer>
+    </aside>
+
+    <main tuiNavigationMain>
+        <nav compact tuiSubheader [style.position]="'sticky'">
+            <tui-breadcrumbs [itemsLimit]="10">
+                @for (item of breadcrumbs; track item) {
+                    @if ($last) {
+                        <strong *tuiItem tuiFade>{{ item }}</strong>
+                    }
+                    @if (!$last) {
+                        <button *tuiItem tuiLink type="button">{{ item }}</button>
+                    }
+                }
+            </tui-breadcrumbs>
+        </nav>
+        <router-outlet />
+    </main>
+</div>
