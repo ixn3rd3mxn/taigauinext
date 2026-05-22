@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TuiRoot } from '@taiga-ui/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [TuiRoot],
   templateUrl: './app.html',
-  styleUrl: './app.less'
+  styleUrl: './app.less',
 })
-export class App {
-  protected readonly title = signal('taigauinext');
-}
+export class App {}
