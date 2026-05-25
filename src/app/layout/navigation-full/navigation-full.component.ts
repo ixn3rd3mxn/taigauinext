@@ -5,14 +5,11 @@ import {
     TuiButton,
     TuiDataList,
     TuiDropdown,
-    TuiLink,
 } from '@taiga-ui/core';
 import {
     TuiBadge,
-    TuiBreadcrumbs,
     TuiChevron,
     TuiFade,
-    TuiTabs,
 } from '@taiga-ui/kit';
 import {
     TuiNavigation,
@@ -33,13 +30,11 @@ import {
         RouterLink,
         RouterOutlet,
         TuiBadge,
-        TuiBreadcrumbs,
         TuiButton,
         TuiChevron,
         TuiDataList,
         TuiDropdown,
         TuiFade,
-        TuiLink,
         TuiNavigation,
         TuiAsideComponent,
         TuiHeaderComponent,
@@ -48,17 +43,18 @@ import {
         TuiAsideGroupComponent,
         TuiAsideItemDirective,
         TuiSubheaderCompactComponent,
-        TuiTabs,
     ],
     templateUrl: './navigation-full.component.html',
     styleUrl: './navigation-full.component.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationFullComponent {
-    protected readonly expanded = signal(false);
-    protected readonly breadcrumbs = ['หน้าหลัก'];
+    protected readonly expanded = signal(true);
 
     protected handleToggle(): void {
         this.expanded.update((e) => !e);
     }
+
+    protected open1 = true;
+    protected open2 = true;
 }

@@ -1,6 +1,6 @@
 <header tuiNavigationHeader>
-    <span tuiNavigationLogo>
-        <span tuiFade>ศูนย์รับแจ้งเหตุและสั่งการการแพทย์ฉุกเฉิน อบจ.ปัตตานี</span>
+    <span tuiFade tuiNavigationLogo>
+        <span>ศูนย์รับแจ้งเหตุและสั่งการการแพทย์ฉุกเฉิน อบจ.ปัตตานี</span>
         <div tuiBadge>pre-alpha-0.0.0</div>
     </span>
     <span tuiNavigationSegments>
@@ -9,9 +9,12 @@
 </header>
 
 <div [style.display]="'flex'">
-    <aside [tuiNavigationAside]="expanded()">
+    <aside
+        [tuiNavigationAside]="expanded()"
+        [style.height]="'calc(100vh - 3rem)'"
+    >
         <header>
-            <button iconStart="@tui.home" type="button" [tuiAsideItem]="hint">
+            <button iconStart="@tui.home" type="button" [routerLink]="'/home'" [tuiAsideItem]="hint">
                 <ng-container [ngTemplateOutlet]="hint" />
                 <ng-template #hint>
                     <span tuiFade>หน้าหลัก</span>
@@ -19,7 +22,7 @@
             </button>
         </header>
 
-        <tui-aside-group>
+        <tui-aside-group [(open)]="open1">
             <button
                 iconStart="@tui.layout-dashboard"
                 tuiAsideItem
@@ -41,7 +44,7 @@
             </button>
         </tui-aside-group>
 
-        <tui-aside-group>
+        <tui-aside-group [(open)]="open2">
             <button
                 iconStart="@tui.map"
                 tuiAsideItem
@@ -80,16 +83,6 @@
 
     <main tuiNavigationMain>
         <nav compact tuiSubheader [style.position]="'sticky'">
-            <tui-breadcrumbs [itemsLimit]="10">
-                @for (item of breadcrumbs; track item) {
-                    @if ($last) {
-                        <strong *tuiItem tuiFade>{{ item }}</strong>
-                    }
-                    @if (!$last) {
-                        <button *tuiItem tuiLink type="button">{{ item }}</button>
-                    }
-                }
-            </tui-breadcrumbs>
         </nav>
         <router-outlet />
     </main>
