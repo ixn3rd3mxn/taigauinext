@@ -42,7 +42,6 @@ import {
         TuiMainComponent,
         TuiAsideGroupComponent,
         TuiAsideItemDirective,
-        TuiSubheaderCompactComponent,
     ],
     templateUrl: './navigation-full.component.html',
     styleUrl: './navigation-full.component.less',
