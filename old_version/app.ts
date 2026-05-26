@@ -1,4 +1,4 @@
-import {isPlatformBrowser} from '@angular/common';
+import {isPlatformBrowser, KeyValuePipe, NgTemplateOutlet} from '@angular/common';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {TuiHovered, TuiPlatform} from '@taiga-ui/cdk';
 import {TuiResponsiveDialogService} from '@taiga-ui/addon-mobile';
@@ -21,6 +21,7 @@ import {
     ValidatorFn,
     Validators,
 } from '@angular/forms';
+import {RouterLink} from '@angular/router';
 import {TuiDay} from '@taiga-ui/cdk';
 import {
     TuiButton,
@@ -31,29 +32,37 @@ import {
     TuiError,
     TuiGroup,
     TuiIcon,
+    TuiLabel,
     TuiRadio,
     TuiRoot,
     TuiTextfield,
     TuiTitle,
     TuiInput,
+    TuiLink,
     TUI_MONTHS,
     TUI_SHORT_WEEK_DAYS,
 } from '@taiga-ui/core';
 import {
+    TuiAutoColorPipe,
     TuiAvatar,
     TuiBadge,
     TuiBlock,
     TuiChevron,
     TuiConfirmService,
+    TuiDataListDropdownManager,
     TuiDataListWrapper,
     TuiFade,
+    TuiInitialsPipe,
     TuiInputDate,
+    TuiRadioList,
     TuiSelect,
+    TuiSwitch,
     TuiTabs,
+    TuiBreadcrumbs,
     TUI_CONFIRM,
     type TuiConfirmData,
 } from '@taiga-ui/kit';
-import {TuiCardLarge, TuiHeader, TuiNavigation} from '@taiga-ui/layout';
+import {TuiCardLarge, TuiForm, TuiHeader, TuiNavigation} from '@taiga-ui/layout';
 import {SettingsComponent} from './settings/settings.component';
 import {ApiService, type IncidentSummary} from './services/api.service';
 import {TuiLegendItem, TuiRingChart} from '@taiga-ui/addon-charts';
@@ -110,9 +119,11 @@ function msUntilNextShiftBoundary(): number {
     imports: [
         FormsModule,
         ReactiveFormsModule,
-
+        KeyValuePipe,
+        NgTemplateOutlet,
+        RouterLink,
         TuiAmountPipe,
-
+        TuiAutoColorPipe,
         TuiAvatar,
         TuiBadge,
         TuiButton,
@@ -120,34 +131,36 @@ function msUntilNextShiftBoundary(): number {
         TuiCell,
         TuiChevron,
         TuiDataList,
-
+        TuiDataListDropdownManager,
         TuiDataListWrapper,
         TuiDropdown,
         TuiFade,
-
+        TuiForm,
         TuiHeader,
         TuiHovered,
         TuiIcon,
-
+        TuiInitialsPipe,
         TuiInput,
         TuiInputDate,
         TuiLegendItem,
         TuiNavigation,
         TuiPlatform,
-
+        TuiRadioList,
         TuiRingChart,
         TuiRoot,
         TuiSelect,
-
+        TuiSwitch,
         TuiTabs,
         TuiTextfield,
         TuiTitle,
-
+        TuiBreadcrumbs,
+        TuiLink,
+        TuiLabel,
         TuiBlock,
         TuiError,
         TuiGroup,
         TuiRadio,
-
+        SettingsComponent,
     ],
     templateUrl: './app.html',
     styleUrl: './app.less',

@@ -1,5 +1,44 @@
 <tui-root>
     <header tuiNavigationHeader>
+        <button
+            title="Menu"
+            tuiIconButton
+            tuiNavigationDrawer
+            type="button"
+            [(open)]="open"
+        >
+            <tui-data-list>
+                @for (group of drawer | keyvalue; track group) {
+                    <tui-opt-group [label]="group.key">
+                        @for (item of group.value; track item) {
+                            <button
+                                tuiOption
+                                type="button"
+                                (click)="open = false"
+                            >
+                                <img
+                                    alt="icon"
+                                    [src]="item.icon"
+                                />
+                                {{ item.name }}
+                            </button>
+                        }
+                    </tui-opt-group>
+                }
+                <hr />
+                <tui-opt-group>
+                    <label tuiOption>
+                        <input
+                            size="s"
+                            tuiSwitch
+                            type="checkbox"
+                            [(ngModel)]="switch"
+                        />
+                        Dark mode
+                    </label>
+                </tui-opt-group>
+            </tui-data-list>
+        </button>
         <span tuiNavigationLogo>
             <span tuiFade>ศูนย์รับแจ้งเหตุและสั่งการการแพทย์ฉุกเฉิน อบจ.ปัตตานี</span>
         </span>
@@ -9,6 +48,107 @@
         </span>
     </header>
     <div [style.display]="'flex'">
+        <aside
+            [tuiNavigationAside]="expanded()"
+            [style.height]="'calc(100vh - 3rem)'"
+        >
+            <header>
+                <button
+                    iconStart="@tui.home"
+                    type="button"
+                    [tuiAsideItem]="hint"
+                >
+                    <ng-container [ngTemplateOutlet]="hint" />
+                    <ng-template #hint>
+                        <span tuiFade>หน้าหลัก</span>
+                        <div
+                            appearance="accent"
+                            tuiBadge
+                        >
+                            Alpha
+                        </div>
+                    </ng-template>
+                </button>
+            </header>
+            <tui-aside-group>
+                <button
+                    iconStart="@tui.layout-dashboard"
+                    tuiAsideItem
+                    tuiChevron
+                    type="button"
+                >
+                    รายงานรับแจ้งเหตุ
+                    <ng-template>
+                        <button
+                            tuiAsideItem
+                            type="button"
+                        >
+                            แดชบอร์ด
+                        </button>
+                        <button
+                            tuiAsideItem
+                            type="button"
+                        >
+                            สรุปผล
+                        </button>
+                        <button
+                            tuiAsideItem
+                            type="button"
+                        >
+                            จัดการข้อมูล
+                        </button>
+                    </ng-template>
+                </button>
+            </tui-aside-group>
+            <tui-aside-group>
+                <button
+                    iconStart="@tui.map"
+                    tuiAsideItem
+                    tuiChevron
+                    type="button"
+                >
+                    รวมหน่วยกู้ชีพ
+                    <ng-template>
+                        <button
+                            tuiAsideItem
+                            type="button"
+                        >
+                            แผนที่
+                        </button>
+                        <button
+                            tuiAsideItem
+                            type="button"
+                        >
+                            สรุปผล
+                        </button>
+                        <button
+                            tuiAsideItem
+                            type="button"
+                        >
+                            จัดการข้อมูล
+                        </button>
+                    </ng-template>
+                </button>
+            </tui-aside-group>
+            <footer>
+                <button
+                    appSettings
+                    iconStart="@tui.settings"
+                    tuiAsideItem
+                    type="button"
+                >
+                    การตั้งค่า
+                </button>
+                <button
+                    tuiAsideItem
+                    type="button"
+                    [iconStart]="expanded() ? '@tui.arrow-left-to-line' : '@tui.arrow-right-to-line'"
+                    (click)="handleToggle()"
+                >
+                    {{ expanded() ? 'ซ่อนแถบ' : 'แสดงแถบ' }}
+                </button>
+            </footer>
+        </aside>
         <main tuiNavigationMain>
             <nav
                 compact
