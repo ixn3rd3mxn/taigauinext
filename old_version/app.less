@@ -1,0 +1,91 @@
+.stat-card {
+    flex: 1;
+    max-width: 257.25px;
+    height: auto;
+    box-shadow: var(--tui-shadow-medium);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: var(--tui-shadow-medium-hover);
+    }
+}
+
+.multistat-card {
+    box-shadow: var(--tui-shadow-medium);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: var(--tui-shadow-medium-hover);
+    }
+}
+
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: inherit;
+}
+
+.badge-up {
+    background: var(--tui-status-negative-pale-hover);
+    color: var(--tui-text-primary);
+}
+
+.badge-down {
+    background: var(--tui-status-positive-pale-hover);
+    color: var(--tui-text-primary);
+}
+
+.badge-equal {
+    background: var(--tui-background-neutral-1-hover);
+    color: var(--tui-text-primary);
+}
+
+
+.ring-chart-card {
+    --tui-chart-categorical-00: #c779d0;
+    --tui-chart-categorical-01: #feac5e;
+    --tui-chart-categorical-02: #ff5f6d;
+    box-shadow: var(--tui-shadow-medium);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: var(--tui-shadow-medium-hover);
+    }
+}
+
+.ring-chart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.ring-chart-legend {
+    display: flex;
+    flex-direction: column;
+}
+
+.ring-chart-item {
+    margin: 0 0 0.75rem;
+}
+
+.incident-label {
+    font: var(--tui-typography-heading-h6);
+    margin: 0 0 0.5rem;
+    display: block;
+}
+
+.incident-group {
+    margin-block-end: 0.25rem;
+}
+
+.invalid-group {
+    --tui-border-normal: var(--tui-status-negative);
+}
+
+[tuiAppearance][data-appearance=outline]:is([data-mode~=invalid], .tui-invalid, :invalid):not([data-mode~=readonly], [data-mode~=valid], [data-state=disabled], :disabled, ._disabled),
+[tuiAppearance][data-appearance=outline-destructive]:is([data-mode~=invalid], .tui-invalid, :invalid):not([data-mode~=readonly], [data-mode~=valid], [data-state=disabled], :disabled, ._disabled),
+[tuiAppearance][data-appearance=outline-grayscale]:is([data-mode~=invalid], .tui-invalid, :invalid):not([data-mode~=readonly], [data-mode~=valid], [data-state=disabled], :disabled, ._disabled) {
+    box-shadow: inset 0 0 0 1px var(--tui-status-negative);
+}
+
