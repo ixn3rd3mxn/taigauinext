@@ -12,15 +12,21 @@ import {
     TuiFade,
 } from '@taiga-ui/kit';
 import {
-    TuiNavigation,
-    TuiAsideComponent,
-    TuiHeaderComponent,
-    TuiLogoComponent,
-    TuiMainComponent,
-    TuiAsideGroupComponent,
-    TuiAsideItemDirective,
-    TuiSubheaderCompactComponent,
+    TuiNavigation
 } from '@taiga-ui/layout';
+
+const DAYS = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+const MONTHS = [
+    'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม',
+];
+
+function getCurrentShiftName(date: Date): string {
+    const total = date.getHours() * 60 + date.getMinutes();
+    if (total >= 8 * 60 + 30 && total < 16 * 60 + 30) return 'เช้า';
+    if (total >= 16 * 60 + 30 || total < 30) return 'บ่าย';
+    return 'ดึก';
+}
 
 @Component({
     selector: 'app-navigation-full',
@@ -35,30 +41,12 @@ import {
         TuiDataList,
         TuiDropdown,
         TuiFade,
-        TuiNavigation,
-        TuiAsideComponent,
-        TuiHeaderComponent,
-        TuiLogoComponent,
-        TuiMainComponent,
-        TuiAsideGroupComponent,
-        TuiAsideItemDirective,
+        TuiNavigation
     ],
     templateUrl: './navigation-full.component.html',
     styleUrl: './navigation-full.component.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-const DAYS = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
-const MONTHS = [
-    'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
-    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม',
-];
-
-function getCurrentShiftName(date: Date): string {
-    const total = date.getHours() * 60 + date.getMinutes();
-    if (total >= 8 * 60 + 30 && total < 16 * 60 + 30) return 'เช้า';
-    if (total >= 16 * 60 + 30 || total < 30) return 'บ่าย';
-    return 'ดึก';
-}
 
 export class NavigationFullComponent {
     private readonly destroyRef = inject(DestroyRef);
